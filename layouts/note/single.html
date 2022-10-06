@@ -26,37 +26,6 @@
         {{ end }}
       </span>
 
-      {{ if and (.Site.Taxonomies.series) (isset .Params "series") }}
-        <section class="mt4">
-          {{ $readMore := ":wave:" }}
-          {{ $series := .Params.series | urlize}}
-          <h3>{{ $readMore | emojify }} Related notes in the <a href="/series/{{ $series }}" class="b bb bw1 pb1 no-underline black">{{ .Params.Series }}</a> series...</h3>
-
-          {{ $notes := index .Site.Taxonomies.series $series }}
-
-          {{ if (gt ($notes | len) 1)}}
-            <ul class="list pl0">
-              {{ range where $notes "Title" "!=" .Title }}
-                <li class="list pl0 lh-copy">
-                  <a
-                    class="f4 b dib black no-underline"
-                    href="{{ .Permalink}}"
-                    >{{ .Title }}</a
-                  >
-                  <span class="f6 gray">{{ .Date.Format "January 2, 2006" }}</span>
-                </li>
-              {{ end }}
-            </ul>
-          {{ else }}
-            <div class="ph2 i">
-              No follow up notes yet. Check back soon!
-            </div>
-          {{ end }}
-        </section>
-      {{ end }}
-
-  </section>
-
   {{ partial "footer.html" . }}
   </body>
 </html>
